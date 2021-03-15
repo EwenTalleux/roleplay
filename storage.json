@@ -39,7 +39,7 @@
   },
 
   "towns": {"middletown": {"name": "Middletown", "go_to": ["port"]},
-            "longisland": "Long Island"
+            "longisland": {"name": "Long Island", "go_to": ["port"]}
 
   },
 
@@ -50,6 +50,13 @@
   "weapons": {"hand": {"damage": 2, "after_kick_effect": "None"},
               "small_knife": {"damage": 3, "after_kick_effect": "None"}
 
+  },
+
+  "ships": {"rawboat1": {"size": 1}
+
+
   }
+
+
 
 }

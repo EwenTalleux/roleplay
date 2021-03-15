@@ -15,6 +15,7 @@ class Player:
         self.money = 0
         self.weapon = "hand"
         self.currentplace = "middletown"
+        self.ship = None
 
     def add_inventory(self, id_item):
         """

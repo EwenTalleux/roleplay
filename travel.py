@@ -10,16 +10,17 @@ def travel(placefrom, placeto):
     :param placeto: str
     :return:
     """
-    time = main.data["travel"][placefrom][placeto]  # todo add travel matrix in storage.json
+    time = 2  # todo add travel matrix in storage.json
 
-    for battle in range(
-            int(time / main.player.ship)):  # todo add player.ship and get ship size in storage.json -> "ships"
+    for battle in range(int(time / main.data["ships"][main.player.ship]["size"])):
         if main.player.is_alive():
+            # todo add traveling message
             fight.battle(def_mob(placefrom, placeto), def_mob_level(placefrom, placeto))
         else:
-            return fight.death_player() # todo add death_player in fight.py
+            return fight.death_player()  # todo add death_player in fight.py
     main.player.currentplace = placeto
     return place.choice_direction_menu(placeto)
+
 
 def def_mob(placefrom, placeto):
     """
@@ -27,8 +28,11 @@ def def_mob(placefrom, placeto):
     :param placeto: str
     :return:
     """
-    choice_mob = random.randint(len(main.data["mob_zone"][placefrom][placeto])) # todo add "mob_zone" in storage.json
-    return main.data["mob_zone"][placefrom][placeto][choice_mob]
+    return "mob_fish"
+
+    # choice_mob = random.randint(len(main.data["mob_zone"][placefrom][placeto]))  # todo add "mob_zone" in storage.json
+    # return main.data["mob_zone"][placefrom][placeto][choice_mob]
+
 
 def def_mob_level(placefrom, placeto):
     """
@@ -36,3 +40,4 @@ def def_mob_level(placefrom, placeto):
     :param placeto: str
     :return:
     """
+    return 2

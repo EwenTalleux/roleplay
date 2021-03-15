@@ -18,7 +18,7 @@ def display_current_place(place):
     :param place: str
     :return: str
     """
-    main_line = '|   ' + main.data["towns"][place] + '   |'
+    main_line = '|   ' + main.data["towns"][place]["name"] + '   |'
     for lenght in range(len(main_line)):
         print('_', end='')
     print()

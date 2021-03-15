@@ -195,3 +195,4 @@ def exit():
 
 
 player.add_inventory('id_card')
+player.ship = "rawboat1"
