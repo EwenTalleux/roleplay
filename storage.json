@@ -1,0 +1,55 @@
+{"commands": {"menu": "menu_open",
+              "exit": "exit"
+
+  },
+
+  "menu_options": {"0": "exit_menu",
+                   "1": "inventory_menu"
+  },
+
+  "fight_menu_options": {"1": "playerattacks",
+                         "2": "fight_inventory_menu"
+
+  },
+
+  "shop_menu_options": {"1": "display_selling_menu",
+                        "2": "display_buying_menu"
+
+  },
+
+  "items": {"id_card": {"name": "Identity Card" ,"description": "Your Identity Card. It gives information about you. Can also describes your mindset. (Can be updated with time)","use_in_fight": 0,"salable": 0,"equipable": 0},
+            "healing_potion": {"name": "Healing Potion", "description":"Restore 5 health points.","effect": {"health": 5} ,"use_in_fight": 1,"salable": 1,"equipable": 0},
+            "fish": {"name": "Fish", "description": "A very fresh fish, just caught. Can be used to cook some dishes.", "effect": {"health": 1}, "use_in_fight": 1,"salable": 1, "equipable": 0},
+            "scale": {"name": "Scale", "description": "A hard, shiny scale. Can be used to craft stuff.", "use_in_fight": 0,"salable": 1, "equipable": 0},
+            "small_knife": {"name": "Small Knife", "description": "A small knife that does 3 damage points.", "use_in_fight": 0, "salable": 1, "equipable": 1, "equipable_type": "weapon"}
+
+  },
+
+  "mobs": {"mob_fish": {"name":"Fish","loots": {"fish": 95, "scale": 5},"life": 2,"strength": 1}
+
+  },
+
+  "effects": {"health": {"effect": "health_effect", "effect_on": "self"}
+
+  },
+
+  "shops": {"middletown": {"shop1": {"buy": {"healing_potion": 15},"sell": {"fish": 2, "scale": 5}}},
+            "longisland": {"shop2": {"buy": {"small_knife": 10}}, "sell": {"fish": 2, "scale": 5}}
+
+  },
+
+  "towns": {"middletown": {"name": "Middletown", "go_to": ["port"]},
+            "longisland": "Long Island"
+
+  },
+
+  "locations": {"shop1": "Magasin Général"
+
+  },
+
+  "weapons": {"hand": {"damage": 2, "after_kick_effect": "None"},
+              "small_knife": {"damage": 3, "after_kick_effect": "None"}
+
+  }
+
+}
