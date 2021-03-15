@@ -42,3 +42,6 @@ class Player:
         """
         self.weapon = id_item
         self.inventory.pop(self.inventory.index(id_item))
+
+    def is_alive(self):
+        return self.currentlifespan > 0

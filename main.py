@@ -2,9 +2,6 @@ import time
 import json
 import playerobject
 
-print('test')
-
-
 player = playerobject.Player('name', 'gender')
 
 with open("storage.json") as file:
@@ -39,7 +36,6 @@ def is_command(text):
             return is_command_known(text.replace("!", ""))
         else:
             print("Please, type a valid command.")
-
 
 
 def is_command_known(text):
@@ -197,5 +193,5 @@ def equip_item(item):
 def exit():
     return
 
-player.add_inventory('id_card')
 
+player.add_inventory('id_card')

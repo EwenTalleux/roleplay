@@ -5,7 +5,7 @@ with open("storage.json") as file:
     data = json.load(file)
 
 
-def choice_direction_menu(place):
+def choice_direction_menu(place=main.player.currentplace):
     """
     :param place: str
     :return:
@@ -31,4 +31,3 @@ def display_current_place(place):
     for lenght in range(len(main_line) - 2):
         print('_', end='')
     print('|')
-    
