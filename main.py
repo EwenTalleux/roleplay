@@ -2,8 +2,6 @@ import time
 import json
 import playerobject
 
-test
-
 player = playerobject.Player('name', 'gender')
 
 with open("storage.json") as file:
