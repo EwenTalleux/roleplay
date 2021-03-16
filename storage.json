@@ -39,7 +39,11 @@
   },
 
   "towns": {"middletown": {"name": "Middletown", "go_to": ["port"]},
-            "longisland": {"name": "Long Island", "go_to": ["port"]}
+            "longisland": {"name": "Long Island", "go_to": ["port"]},
+            "fishtown>": {"name": "Fishtown", "go_to": ["port"]},
+            "foresttown": {"name": "Foresttown", "go_to": ["port"]},
+            "hilltown": {"name": "Hilltown", "go_to": ["port"]},
+            "valleytown": {"name": "Valleytown", "go_to": ["port"]}
 
   },
 
@@ -55,8 +59,14 @@
   "ships": {"rawboat1": {"size": 1}
 
 
-  }
+  },
 
 
+  "travel": [[0, 15, 13, 11, 7, 8],
+             [15, 0, 4, 6, 16, 17],
+             [13, 4, 0, 2, 15, 16],
+             [11, 6, 2, 0, 14, 15],
+             [7, 16, 15, 14, 0, 1],
+             [8, 17, 16, 15, 1, 1]]
 
 }

@@ -10,8 +10,8 @@ def travel(placefrom, placeto):
     :param placeto: str
     :return:
     """
-    time = 2  # todo add travel matrix in storage.json
-
+    time = main.data["travel"][[town for town in main.data["towns"].keys()].index(placefrom)][[town for town in main.data["towns"].keys()].index(placeto)]
+    print(time)
     for battle in range(int(time / main.data["ships"][main.player.ship]["size"])):
         if main.player.is_alive():
             # todo add traveling message
