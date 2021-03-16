@@ -46,3 +46,7 @@ class Player:
 
     def is_alive(self):
         return self.currentlifespan > 0
+
+    def healing(self):
+        self.currentlifespan = self.maxlifespan
+        self.money -= 5

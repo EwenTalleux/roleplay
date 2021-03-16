@@ -1,5 +1,6 @@
 import mobsobject
 import main
+import place
 import effects
 
 
@@ -202,3 +203,10 @@ def calcul_damage():
     :return:
     """
     return main.data["weapons"][main.player.weapon]["damage"]
+
+def death_player():
+    print("You have no more life points. Travelers have found you very weak on the beaches of "
+          + main.data["towns"][main.player.currentplace]["name"]
+          + ". You were taken to the nearest health center and paid 5 coins.")
+    main.player.healing()
+    return place.choice_direction_menu(main.player.currentplace)
