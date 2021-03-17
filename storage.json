@@ -67,6 +67,39 @@
              [13, 5, 0, 5, 9, 11],
              [11, 7, 5, 0, 7, 9],
              [9, 11, 9, 7, 0, 3],
-             [7, 13, 11, 9, 3, 0]]
+             [7, 13, 11, 9, 3, 0]],
+
+  "mob_zone": {"middletown-valleytown": [7, 6, 5, 4, 3, 2, 1],
+               "valleytown-middletown": [1, 2, 3, 4, 5, 6, 7],
+               "middletown-hilltown": [7, 6, 5, 4, 3, 3, 3, 2, 1],
+               "hilltown-middletown": [1, 2, 3, 3, 3, 4, 5, 6, 7],
+               "middletown-foresttown": [7, 6, 5, 4, 3, 3, 3, 3, 3, 4, 4],
+               "foresttown-middletown": [4, 4, 3, 3, 3, 3, 3, 4, 5, 6, 7],
+               "middletown-fishtown": [7, 6, 5, 4, 3, 3, 3, 3, 3, 4, 5, 5, 4],
+               "fishtown-middletown": [4, 5, 5, 4, 3, 3, 3, 3, 3, 4, 5, 6, 7],
+               "middletown-longisland": [7, 6, 5, 4, 3, 3, 3, 3, 3, 4, 5, 5, 6, 7, 8],
+               "longisland-middletown": [8, 7, 6, 5, 5, 4, 3, 3, 3, 3, 3, 4, 5, 6, 7],
+               "valleytown-hilltown": [1, 2, 3, 3, 3, 2, 1],
+               "hilltown-valleytown": [1, 2, 3, 3, 3, 2, 1],
+               "valleytown-foresttown": [1, 2, 3, 3, 3, 3, 3, 4, 4],
+               "foresttown-valleytown": [4, 4, 3, 3, 3, 3, 3, 2, 1],
+               "valleytown-fishtown": [1, 2, 3, 3, 3, 3, 3, 4, 5, 5, 4],
+               "fishtown-valleytown": [4, 5, 5, 4, 3, 3, 3, 3, 3, 2, 1],
+               "valleytown-longisland": [1, 2, 3, 3, 3, 3, 3, 4, 5, 5, 6, 7, 8],
+               "longisland-valleytown": [8, 7, 6, 5, 5, 4, 3, 3, 3, 3, 3, 2, 1],
+               "hilltown-foresttown": [1, 2, 3, 3, 3, 4, 4],
+               "foresttown-hilltown": [4, 4, 3, 3, 3, 2, 1],
+               "hilltown-fishtown": [1, 2, 3, 3, 3, 4, 5, 5, 4],
+               "fishtown-hilltown": [4, 5, 5, 4, 3, 3, 3, 2, 1],
+               "hilltown-longisland": [1, 2, 3, 3, 3, 4, 5, 5, 6, 7, 8],
+               "longisland-hilltown": [8, 7, 6, 5, 5, 4, 3, 3, 3, 2, 1],
+               "foresttown-fishtown": [4, 4, 5, 5, 4],
+               "fishtown-foresttown": [4, 5, 5, 4, 4],
+               "foresttown-longisland": [4, 4, 5, 5, 6, 7, 8],
+               "longisland-foresttown": [8, 7, 6, 5, 5, 4, 4],
+               "fishtown-longisland": [4, 5, 6, 7, 8],
+               "longisland-fishtown": [8, 7, 6, 5, 4]
+
+  }
 
 }
