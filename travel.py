@@ -17,7 +17,7 @@ def travel(placefrom, placeto):
             traveling_message(battle, placefrom, placeto)
             mob = def_mob(placefrom, placeto)
             mob_message(mob)
-            fight.battle(mob, def_mob_level(placefrom, placeto))
+            fight.battle(mob, def_mob_level(placefrom, placeto, battle))
         else:
             return fight.death_player()
     main.player.currentplace = placeto
@@ -36,13 +36,15 @@ def def_mob(placefrom, placeto):
     # return main.data["mob_zone"][placefrom][placeto][choice_mob]
 
 
-def def_mob_level(placefrom, placeto):
+def def_mob_level(placefrom, placeto, battlenumber):
     """
+    :param battlenumber: int
     :param placefrom: str
     :param placeto: str
     :return:
     """
-    return 2
+    return random.randint(main.data["level_zone"][str(main.data["mob_zone_level"][placefrom + '-' + placeto][battlenumber])]["levels"][0],
+                          main.data["level_zone"][str(main.data["mob_zone_level"][placefrom + '-' + placeto][battlenumber])]["levels"][1])
 
 
 def traveling_message(battlenumber, placefrom, placeto):

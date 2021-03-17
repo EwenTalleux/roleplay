@@ -184,10 +184,10 @@ def equip_item(item):
     :return:
     """
     if not player.have_weapon():
-        player.change_item(item)
+        player.change_weapon(item)
     else:
         player.add_inventory(player.weapon)
-        player.change_item(item)
+        player.change_weapon(item)
 
 
 def exit():
@@ -196,3 +196,5 @@ def exit():
 
 player.add_inventory('id_card')
 player.ship = "rawboat1"
+player.add_inventory('small_knife')
+equip_item("small_knife")
