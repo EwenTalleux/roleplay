@@ -15,7 +15,7 @@ def travel(placefrom, placeto):
     for battle in range(int(time / main.data["ships"][main.player.ship]["size"])):
         if main.player.is_alive():
             traveling_message(battle, placefrom, placeto)
-            mob = def_mob(placefrom, placeto)
+            mob = def_mob(placefrom, placeto, battle)
             mob_message(mob)
             fight.battle(mob, def_mob_level(placefrom, placeto, battle))
         else:
@@ -24,16 +24,18 @@ def travel(placefrom, placeto):
     return place.choice_direction_menu(placeto)
 
 
-def def_mob(placefrom, placeto):
+def def_mob(placefrom, placeto, battlenumber):
     """
+    :param battlenumber: int
     :param placefrom: str
     :param placeto: str
     :return:
     """
-    return "mob_fish"
-
-    # choice_mob = random.randint(len(main.data["mob_zone"][placefrom][placeto]))  # todo add "mob_zone" in storage.json
-    # return main.data["mob_zone"][placefrom][placeto][choice_mob]
+    weights = [weight for weight in main.data["level_zone"][str(main.data["mob_zone_level"][
+            placefrom + '-' + placeto][battlenumber])]["mobs"].values()]
+    mobs = [mob for mob in main.data["level_zone"][str(main.data["mob_zone_level"][
+            placefrom + '-' + placeto][battlenumber])]["mobs"].keys()]
+    return random.choices(mobs, weights)[0]
 
 
 def def_mob_level(placefrom, placeto, battlenumber):
@@ -43,8 +45,10 @@ def def_mob_level(placefrom, placeto, battlenumber):
     :param placeto: str
     :return:
     """
-    return random.randint(main.data["level_zone"][str(main.data["mob_zone_level"][placefrom + '-' + placeto][battlenumber])]["levels"][0],
-                          main.data["level_zone"][str(main.data["mob_zone_level"][placefrom + '-' + placeto][battlenumber])]["levels"][1])
+    return random.randint(main.data["level_zone"][str(main.data["mob_zone_level"][placefrom + '-' + placeto][
+                                                          battlenumber])]["levels"][0],
+                          main.data["level_zone"][str(main.data["mob_zone_level"][placefrom + '-' + placeto][
+                                                          battlenumber])]["levels"][1])
 
 
 def traveling_message(battlenumber, placefrom, placeto):
