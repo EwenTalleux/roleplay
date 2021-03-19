@@ -34,7 +34,7 @@
 
   },
 
-  "shops": {"middletown": {"shop1": {"buy": {"healing_potion": 15},"sell": {"fish": 2, "scale": 5}}},
+  "shops": {"middletown": {"shop1": {"buy": {"healing_potion": 15, "small_knife": 10},"sell": {"fish": 2, "scale": 5}}},
             "longisland": {"shop2": {"buy": {"small_knife": 10}}, "sell": {"fish": 2, "scale": 5}}
 
   },

@@ -12,5 +12,7 @@ def health_effect(amount, add, effect_on):
         if add:
             if effect_on.currentlifespan < effect_on.maxlifespan:
                 effect_on.currentlifespan = effect_on.currentlifespan + 1
+            if effect_on.currentlifespan > effect_on.maxlifespan:
+                effect_on.currentlifespan = effect_on.maxlifespan
         else:
             effect_on.currentlifespan = effect_on.currentlifespan - 1

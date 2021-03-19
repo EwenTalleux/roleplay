@@ -16,6 +16,9 @@ class Player:
         self.weapon = "hand"
         self.currentplace = "middletown"
         self.ship = None
+        self.attack = 1
+        self.defense = 1
+        self.level = 1
 
     def add_inventory(self, id_item):
         """
@@ -49,3 +52,14 @@ class Player:
     def healing(self):
         self.currentlifespan = self.maxlifespan
         self.money -= 5
+
+    def setlevel(self):
+        return (self.exppoints // 10)+1
+
+    def levelup(self):
+        if self.setlevel() != self.level:
+            self.level = self.setlevel()
+            self.attack = round(self.attack + 0.3/self.attack, 1)
+            self.defense = round(self.defense + 0.3 / self.defense, 1)
+            self.maxlifespan = self.maxlifespan + 1
+            print("You have just passed level " + str(self.level) + ".")

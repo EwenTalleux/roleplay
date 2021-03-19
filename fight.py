@@ -20,6 +20,7 @@ def battle(mob, level):
         giveloots(Mob)
         giveexp(Mob)
         rewards(Mob)
+        main.player.levelup()
         return True
     elif main.player.currentlifespan <= 0:
         print("You lost against " + main.data["mobs"][Mob.name]["name"] + " level " + str(Mob.level) + ".")
@@ -47,6 +48,9 @@ def playerattacks(Mob):
     """
     damage = calcul_damage()
     # todo add after kick effect
+    print(Mob.currentlifespan)
+    print(damage)
+    print(Mob.currentlifespan - damage)
     Mob.currentlifespan = Mob.currentlifespan - damage
     return True
 
@@ -159,7 +163,7 @@ def enemyturn(Mob, do_enemy_turn):
     :return:
     """
     if do_enemy_turn:
-        main.player.currentlifespan = main.player.currentlifespan - Mob.strength
+        main.player.currentlifespan = main.player.currentlifespan - (Mob.strength - main.player.defense/Mob.strength)
 
 
 def giveloots(Mob):
@@ -202,7 +206,8 @@ def calcul_damage():
     """
     :return:
     """
-    return main.data["weapons"][main.player.weapon]["damage"]
+    return main.data["weapons"][main.player.weapon]["damage"] * main.player.attack
+
 
 def death_player():
     print("You have no more life points. Travelers have found you very weak on the beaches of "

@@ -195,6 +195,8 @@ def exit():
 
 
 player.add_inventory('id_card')
+player.add_inventory('scale')
+player.add_inventory('scale')
+player.add_inventory('scale')
+player.add_inventory('fish')
 player.ship = "rawboat1"
-player.add_inventory('small_knife')
-equip_item("small_knife")

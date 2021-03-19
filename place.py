@@ -57,7 +57,11 @@ def port(place):
     destinations = [destination for destination in data["towns"].keys()]
     destinations.remove(place)
     display_port(destinations)
-    return travel.travel(place, destinations[int(main.user_type_text())-1])
+    user_choice = main.user_type_text()
+    if user_choice == "0":
+        return
+    else:
+        return travel.travel(place, destinations[int(user_choice)-1])
 
 
 def display_port(destinations):
@@ -67,6 +71,7 @@ def display_port(destinations):
     """
     lignes = [str(destinations.index(destination)+1) + " : " + data["towns"][destination]["name"]
               for destination in destinations]
+    lignes = ['0 : Exit'] + lignes
     max_lenght = 0
     for mot in lignes:
         if len(mot) > max_lenght:
