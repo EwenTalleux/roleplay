@@ -32,7 +32,7 @@ def is_command(text):
     :return:
     """
     if text[0] == '!':
-        return is_command_known(text.replace("!", ""))
+        return True
     else:
         print("Please, type a valid command.")
 
@@ -42,6 +42,7 @@ def is_command_known(text):
     :param text: str
     :return:
     """
+    text = text.replace("!", "")
     if text in data['commands']:
         return globals()[data['commands'][text]]()
     else:

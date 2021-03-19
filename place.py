@@ -1,5 +1,6 @@
 import main
 import shops
+import travel
 import json
 
 with open("storage.json") as file:
@@ -24,7 +25,6 @@ def choice_direction_menu(place=main.player.currentplace):
         else:
             if main.is_command(user_choice):
                 main.is_command_known(user_choice)
-                print('Invalid option, please type one of the options above.')
             else:
                 print('Invalid option, please type one of the options above.')
 
@@ -54,7 +54,44 @@ def port(place):
     :param place: str
     :return:
     """
-    print(place+" port test")
+    destinations = [destination for destination in data["towns"].keys()]
+    destinations.remove(place)
+    display_port(destinations)
+    return travel.travel(place, destinations[int(main.user_type_text())-1])
+
+
+def display_port(destinations):
+    """
+    :param destinations: list
+    :return:
+    """
+    lignes = [str(destinations.index(destination)+1) + " : " + data["towns"][destination]["name"]
+              for destination in destinations]
+    max_lenght = 0
+    for mot in lignes:
+        if len(mot) > max_lenght:
+            max_lenght = len(mot)
+    for _ in range(max_lenght + 6):
+        print('_', end='')
+    print()
+    print('|', end='')
+    for _ in range(max_lenght + 4):
+        print(' ', end='')
+    print('|')
+    for place in lignes:
+        lenght = len(place)
+        while lenght < max_lenght + 4:
+            place = place + ' '
+            lenght = len(place)
+            if lenght < max_lenght + 4:
+                place = ' ' + place
+                lenght = len(place)
+        print('|' + place + '|')
+    print('|', end='')
+    for _ in range(max_lenght + 4):
+        print('_', end='')
+    print('|')
+    return
 
 
 def display_possible_choice(place, possible_choice):
@@ -63,7 +100,8 @@ def display_possible_choice(place, possible_choice):
     :param possible_choice: list
     :return:
     """
-    lignes = [numberplace+" : "+data["locations"][data["towns"][place]["go_to"][int(numberplace) - 1]] for numberplace in possible_choice]
+    lignes = [numberplace+" : "+data["locations"][data["towns"][place]["go_to"][int(numberplace) - 1]]
+              for numberplace in possible_choice]
     max_lenght = 0
     for mot in lignes:
         if len(mot) > max_lenght:

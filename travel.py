@@ -45,10 +45,8 @@ def def_mob_level(placefrom, placeto, battlenumber):
     :param placeto: str
     :return:
     """
-    return random.randint(main.data["level_zone"][str(main.data["mob_zone_level"][placefrom + '-' + placeto][
-                                                          battlenumber])]["levels"][0],
-                          main.data["level_zone"][str(main.data["mob_zone_level"][placefrom + '-' + placeto][
-                                                          battlenumber])]["levels"][1])
+    return random.randint(main.data["level_zone"][str(main.data["mob_zone_level"][placefrom + '-' + placeto][battlenumber])]["levels"][0],
+                          main.data["level_zone"][str(main.data["mob_zone_level"][placefrom + '-' + placeto][battlenumber])]["levels"][1])
 
 
 def traveling_message(battlenumber, placefrom, placeto):

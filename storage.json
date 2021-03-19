@@ -106,14 +106,14 @@
 
   "level_zone": {"1": {"levels": [1, 5], "mobs": {"mob_fish": 98, "mob_big_fish": 2}},
                  "2": {"levels": [6, 10], "mobs": {"mob_fish": 80, "mob_big_fish": 20}},
-                 "3": {"level": [10, 18],"mobs": {"mob_fish": 70, "mob_big_fish": 30}},
-                 "4": {"level": [18, 25],"mobs": {"mob_fish": 50, "mob_big_fish": 50}},
-                 "5": {"level": [25, 35],"mobs": {"mob_fish": 30, "mob_big_fish": 70}},
-                 "6": {"level": [35, 45],"mobs": {"mob_fish": 98, "mob_big_fish": 2}},
-                 "7": {"level": [45, 60],"mobs": {"mob_fish": 98, "mob_big_fish": 2}},
-                 "8": {"level": [60, 80],"mobs": {"mob_fish": 98, "mob_big_fish": 2}},
-                 "9": {"level": [80, 100],"mobs": {"mob_fish": 98, "mob_big_fish": 2}},
-                 "10": {"level": [100, 150],"mobs": {"mob_fish": 98, "mob_big_fish": 2}}
+                 "3": {"levels": [10, 18],"mobs": {"mob_fish": 70, "mob_big_fish": 30}},
+                 "4": {"levels": [18, 25],"mobs": {"mob_fish": 50, "mob_big_fish": 50}},
+                 "5": {"levels": [25, 35],"mobs": {"mob_fish": 30, "mob_big_fish": 70}},
+                 "6": {"levels": [35, 45],"mobs": {"mob_fish": 98, "mob_big_fish": 2}},
+                 "7": {"levels": [45, 60],"mobs": {"mob_fish": 98, "mob_big_fish": 2}},
+                 "8": {"levels": [60, 80],"mobs": {"mob_fish": 98, "mob_big_fish": 2}},
+                 "9": {"levels": [80, 100],"mobs": {"mob_fish": 98, "mob_big_fish": 2}},
+                 "10": {"levels": [100, 150],"mobs": {"mob_fish": 98, "mob_big_fish": 2}}
   }
 
 }
