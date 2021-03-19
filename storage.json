@@ -39,7 +39,7 @@
 
   },
 
-  "towns": {"middletown": {"name": "Middletown", "go_to": ["port"]},
+  "towns": {"middletown": {"name": "Middletown", "go_to": ["port","shop1"]},
             "longisland": {"name": "Long Island", "go_to": ["port"]},
             "fishtown": {"name": "Fishtown", "go_to": ["port"]},
             "foresttown": {"name": "Foresttown", "go_to": ["port"]},
@@ -48,7 +48,8 @@
 
   },
 
-  "locations": {"shop1": "Magasin Général"
+  "locations": {"shop1": "Magasin Général",
+                "port": "Port"
 
   },
 

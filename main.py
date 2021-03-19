@@ -31,11 +31,10 @@ def is_command(text):
     :param text: str
     :return:
     """
-    while True:
-        if text[0] == '!':
-            return is_command_known(text.replace("!", ""))
-        else:
-            print("Please, type a valid command.")
+    if text[0] == '!':
+        return is_command_known(text.replace("!", ""))
+    else:
+        print("Please, type a valid command.")
 
 
 def is_command_known(text):

@@ -31,7 +31,6 @@ class Player:
 
     def have_weapon(self):
         """
-        :param id_item: str
         :return:
         """
         return not self.weapon == "hand"

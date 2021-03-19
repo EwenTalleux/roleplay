@@ -14,7 +14,7 @@ def greetings(town, shopid):
     main_line = '|   ' + data["locations"][shopid] + '   |'
     welcome_message = 'Welcome To'
     little_length = (len(main_line) - (len(welcome_message) + 2))
-    little_length2 = (len(main_line) - (len(data["towns"][town]) + 2))
+    little_length2 = (len(main_line) - (len(data["towns"][town]["name"]) + 2))
     if little_length % 2 != 0:
         spacing1 = int(little_length / 2)
         spacing2 = int(little_length / 2) + 1
@@ -47,7 +47,7 @@ def greetings(town, shopid):
     print('|', end='')
     for length in range(spacing3):
         print(' ', end='')
-    print(data["towns"][town], end='')
+    print(data["towns"][town]["name"], end='')
     for length in range(spacing4):
         print(' ', end='')
     print('|')
