@@ -1,3 +1,4 @@
+# L
 import mobsobject
 import main
 import place
@@ -48,10 +49,7 @@ def playerattacks(Mob):
     """
     damage = calcul_damage()
     # todo add after kick effect
-    print(Mob.currentlifespan)
-    print(damage)
-    print(Mob.currentlifespan - damage)
-    Mob.currentlifespan = Mob.currentlifespan - damage
+    Mob.currentlifespan = round((Mob.currentlifespan - damage), 1)
     return True
 
 
@@ -163,7 +161,7 @@ def enemyturn(Mob, do_enemy_turn):
     :return:
     """
     if do_enemy_turn:
-        main.player.currentlifespan = main.player.currentlifespan - (Mob.strength - main.player.defense/Mob.strength)
+        main.player.currentlifespan = round(main.player.currentlifespan - (Mob.strength - main.player.defense/Mob.strength), 1)
 
 
 def giveloots(Mob):

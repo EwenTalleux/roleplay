@@ -1,3 +1,4 @@
+# O
 import time
 import json
 import playerobject
@@ -195,8 +196,4 @@ def exit():
 
 
 player.add_inventory('id_card')
-player.add_inventory('scale')
-player.add_inventory('scale')
-player.add_inventory('scale')
-player.add_inventory('fish')
 player.ship = "rawboat1"

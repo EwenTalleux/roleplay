@@ -1,6 +1,8 @@
+# R
 import main
 import fight
 import shops
+import place
 
 
 def ask_name():
@@ -36,7 +38,6 @@ def check_if_healingpotion_in_inventory():
             print("You didn't buy anything. Go back in the shop and buy something.")
             shops.shop('middletown', 'shop1')
 
-
 print("Oh ! Hey, you !")
 print("You're Hair right ?")
 print()
@@ -56,7 +57,7 @@ main.player.gender = gender
 print("I gave you some money. Go make some shopping. You need stuff to fight wildness monsters.")
 main.player.money = main.player.money + 15
 print("You just earned 15 coins.")
-shops.shop('middletown', 'shop1')
+shops.shop('hilltown', 'shop1')
 check_if_healingpotion_in_inventory()
 print("Great ! Now let's fight some monsters !")
 print("Oh look ! There's a very big and angry fish there. Go kick this bitch's ass !")
@@ -64,9 +65,14 @@ if fight.battle('mob_fish', 3):
     print("You're doing great job ! You're ready for your great adventure " + main.player.name + ".")
 else:
     print("Well... You still have some progress to make...")
-
+print("Now go to the port and for Valleytown.")
+main.player.healing()
+main.player.money = main.player.money + 5
+place.choice_direction_menu()
+print("Great ! You have finally arrived in Valleytown !")
+print()
 print("Game Over")
-print("Thanks for playing the Baldead demo 0.0.1")
+print("Thanks for playing the Baldead demo 0.0.2")
 print("")
 print("Type '!exit' to exit.")
 main.is_command(main.user_type_text())

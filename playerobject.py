@@ -1,3 +1,4 @@
+# H
 import json
 
 with open("storage.json") as file:
@@ -14,7 +15,7 @@ class Player:
         self.exppoints = 0
         self.money = 0
         self.weapon = "hand"
-        self.currentplace = "middletown"
+        self.currentplace = "hilltown"
         self.ship = None
         self.attack = 1
         self.defense = 1
