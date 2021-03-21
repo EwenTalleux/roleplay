@@ -1,4 +1,4 @@
-# R
+# <
 import main
 import fight
 import shops

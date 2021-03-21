@@ -150,8 +150,16 @@ def status(Mob):
     :param Mob: Mob object
     :return: str
     """
-    print(main.data['mobs'][Mob.name]['name'] + ' : ' + str(Mob.currentlifespan) + '/' + str(Mob.maxlifespan))
-    print(main.player.name + " : " + str(main.player.currentlifespan) + '/' + str(main.player.maxlifespan))
+    if int(Mob.currentlifespan) == Mob.currentlifespan:
+        moblife = int(Mob.currentlifespan)
+    else:
+        moblife = Mob.currentlifespan
+    if int(main.player.currentlifespan) == main.player.currentlifespan:
+        playerlife = int(main.player.currentlifespan)
+    else:
+        playerlife = main.player.currentlifespan
+    print(main.data['mobs'][Mob.name]['name'] + ' : ' + str(moblife) + '/' + str(Mob.maxlifespan))
+    print(main.player.name + " : " + str(playerlife) + '/' + str(main.player.maxlifespan))
 
 
 def enemyturn(Mob, do_enemy_turn):
@@ -161,7 +169,8 @@ def enemyturn(Mob, do_enemy_turn):
     :return:
     """
     if do_enemy_turn:
-        main.player.currentlifespan = round(main.player.currentlifespan - (Mob.strength - main.player.defense/Mob.strength), 1)
+        main.player.currentlifespan = round(
+            main.player.currentlifespan - (Mob.strength - ((main.player.defense - 1) / 100)), 1)
 
 
 def giveloots(Mob):

@@ -14,7 +14,7 @@ class Mob:
         self.maxlifespan = data['mobs'][name]['life'] * level
         self.strength = data['mobs'][name]['strength'] * level
         self.loots = []
-        self.exp = self.currentlifespan + self.strength
+        self.exp = self.maxlifespan + self.strength
         self.persistenteffect = []
 
     def set_looting(self):

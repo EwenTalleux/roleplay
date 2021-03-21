@@ -1,4 +1,4 @@
-# <3
+# 3
 import main
 import fight
 import place
@@ -21,10 +21,10 @@ def travel(placefrom, placeto):
             fight.battle(mob, def_mob_level(placefrom, placeto, battle))
         else:
             return fight.death_player()
-    if main.player.is_alive():
+    if not main.player.is_alive():
         return fight.death_player()
     main.player.currentplace = placeto
-    return place.choice_direction_menu(placeto, True)
+    return place.choice_direction_menu(placeto)
 
 
 def def_mob(placefrom, placeto, battlenumber):
