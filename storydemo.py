@@ -79,5 +79,3 @@ print("Thanks for playing the Baldead demo 0.0.3")
 print("")
 print("Type '!exit' to exit.")
 main.is_command(main.user_type_text())
-
-npcobject.Npc("hilltowntm").start()
