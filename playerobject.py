@@ -20,6 +20,8 @@ class Player:
         self.attack = 1
         self.defense = 1
         self.level = 1
+        self.items_given = []
+        self.mission_ncp_end = []
 
     def add_inventory(self, id_item):
         """

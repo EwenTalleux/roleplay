@@ -3,6 +3,7 @@ import main
 import fight
 import shops
 import place
+import npcobject
 
 
 def ask_name():
@@ -76,3 +77,5 @@ print("Thanks for playing the Baldead demo 0.0.2")
 print("")
 print("Type '!exit' to exit.")
 main.is_command(main.user_type_text())
+
+npcobject.Npc("hilltowntm").start()

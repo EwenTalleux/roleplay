@@ -21,7 +21,8 @@
             "healing_potion": {"name": "Healing Potion", "description":"Restore 5 health points.","effect": {"health": 5} ,"use_in_fight": 1,"salable": 1,"equipable": 0},
             "fish": {"name": "Fish", "description": "A very fresh fish, just caught. Can be used to cook some dishes.", "effect": {"health": 1}, "use_in_fight": 1,"salable": 1, "equipable": 0},
             "scale": {"name": "Scale", "description": "A hard, shiny scale. Can be used to craft stuff.", "use_in_fight": 0,"salable": 1, "equipable": 0},
-            "small_knife": {"name": "Small Knife", "description": "A small knife that does 3 damage points.", "use_in_fight": 0, "salable": 1, "equipable": 1, "equipable_type": "weapon"}
+            "small_knife": {"name": "Small Knife", "description": "A small knife that does 3 damage points.", "use_in_fight": 0, "salable": 1, "equipable": 1, "equipable_type": "weapon"},
+            "town_mayor_letter": {"name": "Town Mayor Letter" ,"description": "Letter from the mayor of Hilltown to the mayor of Valleytown","use_in_fight": 0,"salable": 0,"equipable": 0}
 
   },
 
@@ -116,6 +117,19 @@
                  "9": {"levels": [80, 100],"mobs": {"mob_fish": 98, "mob_big_fish": 2}},
                  "10": {"levels": [100, 150],"mobs": {"mob_fish": 98, "mob_big_fish": 2}},
                  "demo": {"levels": [1, 3], "mobs": {"mob_fish": 98, "mob_big_fish": 2}}
+  },
+
+  "npcs": {"hilltowntm": {"name":  "Town Mayor",
+                          "texts": {"askfor": "Hey you ! You're going to Valleytown right ? Great ! I need you to bring this letter to my dear friend the Town Mayor of Valleytown. Give him this letter and come talk to me then.",
+                                    "checkerror": "Please can you bring this letter to the Town Mayor of Valleytown.",
+                                    "end_mission": "Oh great thanks a lot ! You deserve this. Take this."
+                                    },
+                          "giveitem": "town_mayor_letter",
+                          "checkfor": {"not_item": "town_mayor_letter"},
+                          "fonctions_order": ["display_name", "check_item_given_to_player"],
+                          "rewards": {"items": [], "money": 10}
+                          }
+
   }
 
 }
