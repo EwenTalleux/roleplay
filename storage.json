@@ -37,7 +37,8 @@
 
   "shops": {"middletown": {"shop1": {"buy": {"healing_potion": 15, "small_knife": 10},"sell": {"fish": 2, "scale": 5}}},
             "longisland": {"shop2": {"buy": {"small_knife": 10}, "sell": {"fish": 2, "scale": 5}}},
-            "hilltown": {"shop1": {"buy": {"healing_potion": 15},"sell": {"fish": 2, "scale": 5}}}
+            "hilltown": {"shop1": {"buy": {"healing_potion": 15},"sell": {"fish": 2, "scale": 5}}},
+            "valleytown": {}
 
   },
 
@@ -45,8 +46,8 @@
             "longisland": {"name": "Long Island", "go_to": ["port"]},
             "fishtown": {"name": "Fishtown", "go_to": ["port"]},
             "foresttown": {"name": "Foresttown", "go_to": ["port"]},
-            "hilltown": {"name": "Hilltown", "go_to": ["port","shop1"]},
-            "valleytown": {"name": "Valleytown", "go_to": ["port"]}
+            "hilltown": {"name": "Hilltown", "go_to": ["port","shop1","hilltowntm"]},
+            "valleytown": {"name": "Valleytown", "go_to": ["port","valleytowntm"]}
 
   },
 
@@ -71,7 +72,7 @@
              [13, 5, 0, 5, 9, 11],
              [11, 7, 5, 0, 7, 9],
              [9, 11, 9, 7, 0, 2],
-             [7, 13, 11, 9, 3, 0]],
+             [7, 13, 11, 9, 2, 0]],
 
   "mob_zone_level": {"middletown-valleytown": [7, 6, 5, 4, 3, 2, 1],
                "valleytown-middletown": [1, 2, 3, 4, 5, 6, 7],
@@ -83,7 +84,7 @@
                "fishtown-middletown": [4, 5, 5, 4, 3, 3, 3, 3, 3, 4, 5, 6, 7],
                "middletown-longisland": [7, 6, 5, 4, 3, 3, 3, 3, 3, 4, 5, 5, 6, 7, 8],
                "longisland-middletown": [8, 7, 6, 5, 5, 4, 3, 3, 3, 3, 3, 4, 5, 6, 7],
-               "valleytown-hilltown": [1, 2, 3, 3, 3, 2, 1],
+               "valleytown-hilltown": ["demo", "demo"],
                "hilltown-valleytown": ["demo", "demo"],
                "valleytown-foresttown": [1, 2, 3, 3, 3, 3, 3, 4, 4],
                "foresttown-valleytown": [4, 4, 3, 3, 3, 3, 3, 2, 1],
@@ -125,9 +126,21 @@
                                     "end_mission": "Oh great thanks a lot ! You deserve this. Take this."
                                     },
                           "giveitem": "town_mayor_letter",
+                          "take_item": "",
                           "checkfor": {"not_item": "town_mayor_letter"},
                           "fonctions_order": ["display_name", "check_item_given_to_player"],
                           "rewards": {"items": [], "money": 10}
+                          },
+            "valleytowntm": {"name":  "Town Mayor",
+                          "texts": {"askfor": "Hey you ! Welcome to Valleytown ! Have you got anything for me ?",
+                                    "checkerror": "Hey you ! Welcome to Valleytown ! Have you got anything for me ?",
+                                    "end_mission": "Hey you ! What, you have a letter for me ? Let me see it. Oh yes it's from my dear friend the Town Mayor of Hill ! This letter is very important thank you very much."
+                                    },
+                          "giveitem": "",
+                          "take_item": "town_mayor_letter",
+                          "checkfor": {"item": "town_mayor_letter"},
+                          "fonctions_order": ["display_name", "check_item_given_to_player"],
+                          "rewards": {"items": [], "money": 0}
                           }
 
   }

@@ -2,12 +2,19 @@
 import main
 import shops
 import travel
+import npcobject
 import json
 
 with open("storage.json") as file:
     data = json.load(file)
 
 
+# demo functions
+def check_item_given_and_talk_to_hilltown_tm():
+    return "hilltowntm" in main.player.mission_ncp_end
+
+
+#  actual place.py functions
 def choice_direction_menu(place=main.player.currentplace, demo=False):
     """
     :param demo: boolean
@@ -17,12 +24,16 @@ def choice_direction_menu(place=main.player.currentplace, demo=False):
     while True:
         display_current_place(place)
         if not demo:
+            if check_item_given_and_talk_to_hilltown_tm():
+                return
             possible_choice = [str(choice) for choice in range(1, len(data["towns"][place]["go_to"]) + 1)]
             display_possible_choice(place, possible_choice)
             user_choice = main.user_type_text()
             if user_choice in possible_choice:
                 if data["towns"][place]["go_to"][int(user_choice) - 1] in data["shops"][place]:
                     shops.shop(place, data["towns"][place]["go_to"][int(user_choice) - 1])
+                elif data["towns"][place]["go_to"][int(user_choice) - 1] in data["npcs"]:
+                    eval("npcobject.Npc('" + data['towns'][place]["go_to"][int(user_choice) - 1] + "').start")()
                 else:
                     return globals()[data['towns'][place]["go_to"][int(user_choice) - 1]](place)
             else:
@@ -110,8 +121,11 @@ def display_possible_choice(place, possible_choice):
     :param possible_choice: list
     :return:
     """
-    lignes = [numberplace + " : " + data["locations"][data["towns"][place]["go_to"][int(numberplace) - 1]]
+    lignes = [numberplace + " : " + data["locations"][data["towns"][place]["go_to"][int(numberplace) - 1]] if
+              data["towns"][place]["go_to"][int(numberplace) - 1] in data["locations"] else
+              numberplace + " : " + data["npcs"][data["towns"][place]["go_to"][int(numberplace) - 1]]["name"]
               for numberplace in possible_choice]
+    print()
     max_lenght = 0
     for mot in lignes:
         if len(mot) > max_lenght:

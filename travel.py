@@ -24,7 +24,7 @@ def travel(placefrom, placeto):
     if not main.player.is_alive():
         return fight.death_player()
     main.player.currentplace = placeto
-    return place.choice_direction_menu(placeto, True)
+    return place.choice_direction_menu(placeto)
 
 
 def def_mob(placefrom, placeto, battlenumber):

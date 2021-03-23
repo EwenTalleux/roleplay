@@ -36,7 +36,8 @@ class Npc:
         print(data["npcs"][self.idnpc]["texts"]["askfor"])
 
     def give_item(self):
-        main.player.add_inventory(data["npcs"][self.idnpc]["giveitem"])
+        if data["npcs"][self.idnpc]["giveitem"] != "":
+            main.player.add_inventory(data["npcs"][self.idnpc]["giveitem"])
 
     def check_for(self):
         tocheck = [test for test in data["npcs"][self.idnpc]["checkfor"].keys()]
@@ -55,13 +56,15 @@ class Npc:
         print(data["npcs"][self.idnpc]["texts"]["checkerror"])
 
     def check_item_given_to_player(self):
-        if data["npcs"][self.idnpc]["giveitem"] not in main.player.inventory and \
+        if data["npcs"][self.idnpc]["giveitem"] != "" and\
+                data["npcs"][self.idnpc]["giveitem"] not in main.player.inventory and \
                 data["npcs"][self.idnpc]["giveitem"] not in main.player.items_given:
             self.ask_text()
             self.give_item()
         elif self.check_for():
             self.end_mission_text()
             self.rewards()
+            self.take_item_to_player()
         else:
             self.checkerror_text()
 
@@ -88,3 +91,8 @@ class Npc:
             main.player.mission_ncp_end.append(self.idnpc)
         else:
             return
+
+    def take_item_to_player(self):
+        if data["npcs"][self.idnpc]["take_item"] != "":
+            main.player.items_given.append(data["npcs"][self.idnpc]["take_item"])
+            main.player.inventory.remove(data["npcs"][self.idnpc]["take_item"])

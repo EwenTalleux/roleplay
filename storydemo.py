@@ -39,6 +39,7 @@ def check_if_healingpotion_in_inventory():
             print("You didn't buy anything. Go back in the shop and buy something.")
             shops.shop('middletown', 'shop1')
 
+
 print("Oh ! Hey, you !")
 print("You're Hair right ?")
 print()
@@ -66,14 +67,15 @@ if fight.battle('mob_fish', 3):
     print("You're doing great job ! You're ready for your great adventure " + main.player.name + ".")
 else:
     print("Well... You still have some progress to make...")
-print("Now go to the port and for Valleytown.")
+print("Remember you can check your inventory whenever you want in the menu by typing '!menu'.")
+print("Now go talk to the Town Mayor, he has something for you.")
 main.player.healing()
 main.player.money = main.player.money + 5
 place.choice_direction_menu()
-print("Great ! You have finally arrived in Valleytown !")
+print("Great ! You have finally returned the letter to the Town Mayor of Valleytown !")
 print()
 print("Game Over")
-print("Thanks for playing the Baldead demo 0.0.2")
+print("Thanks for playing the Baldead demo 0.0.3")
 print("")
 print("Type '!exit' to exit.")
 main.is_command(main.user_type_text())
