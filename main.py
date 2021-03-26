@@ -57,12 +57,12 @@ def menu_open():
     """
     display_menu()
     while True:
-        possible_choice = ['0', '1']
+        possible_choice = [choice for choice in data["menu_options"].keys()]
         user_choice = user_type_text()
         if user_choice in possible_choice:
             if user_choice == '0':
                 return globals()[data['menu_options'][user_choice]]()
-            elif user_choice == '1':
+            else:
                 globals()[data['menu_options'][user_choice]]()
                 display_menu()
         else:
@@ -81,6 +81,7 @@ def display_menu():
     print('|                  |')
     print('|     0 - Exit     |')
     print('|   1 - Inventory  |')
+    print('|   2 - Equipment  |')
     print('|__________________|')
 
 
@@ -184,17 +185,96 @@ def equip_item(item):
     :param item: str
     :return:
     """
-    if not player.have_weapon():
-        player.change_weapon(item)
+    if not eval("player.have_" + data["items"][item]["equipable_type"])():
+        eval("player.change_" + data["items"][item]["equipable_type"])(item)
     else:
-        player.add_inventory(player.weapon)
-        player.change_weapon(item)
+        player.add_inventory(eval("player."+data["items"][item]["equipable_type"]))
+        eval("player.change_" + data["items"][item]["equipable_type"])(item)
 
 
 def exit():
     return
 
 
+def equipment_list():
+    equipment = []
+    if player.helmet != "head":
+        equipment.append("1")
+    else:
+        equipment.append("Ø")
+    if player.chestplate != "chest":
+        equipment.append("2")
+    else:
+        equipment.append("Ø")
+    if player.legging != "legs":
+        equipment.append("3")
+    else:
+        equipment.append("Ø")
+    if player.boots != "feet":
+        equipment.append("4")
+    else:
+        equipment.append("Ø")
+    if player.weapon != "hand":
+        equipment.append("5")
+    else:
+        equipment.append("Ø")
+    return equipment
+
+
+def display_equipment(equipment):
+    print("_______            _______")
+    print("|     |            |     |")
+    print("|  "+equipment[0]+"  |   Helmet   |  "+equipment[4]+"  |   Weapon")
+    print("|_____|            |_____|")
+    print("_______")
+    print("|     |")
+    print("|  " + equipment[1] + "  |   Chestplate")
+    print("|_____|")
+    print("_______")
+    print("|     |")
+    print("|  " + equipment[2] + "  |   Legging")
+    print("|_____|")
+    print("_______")
+    print("|     |")
+    print("|  " + equipment[3] + "  |   Boots")
+    print("|_____|")
+    print("       ")
+
+
+def display_defense_damage(item):
+    if data["items"][item]["equipable_type"] != "weapon":
+        print("Defense : "+str(data["armor"][item]["defense"]))
+    else:
+        print("Damage : " + str(data["weapons"][item]["damage"]))
+
+
+def equipment_menu():
+    possible_choice = ['0']+equipment_list()
+
+    while True:
+        display_equipment(equipment_list())
+        user_choice = user_type_text()
+        if user_choice in possible_choice:
+            if user_choice == '0':
+                return
+            else:
+                if user_choice == "1":
+                    item = player.helmet
+                if user_choice == "2":
+                    item = player.chestplate
+                if user_choice == "3":
+                    item = player.legging
+                if user_choice == "4":
+                    item = player.boots
+                if user_choice == "5":
+                    item = player.weapon
+                display_item_description(item)
+                display_defense_damage(item)
+        else:
+            print('Invalid option, please type a valid option.')
+
+
 player.add_inventory('id_card')
 player.add_inventory('small_knife')
+player.add_inventory('dirty_helmet')
 player.ship = "rawboat1"

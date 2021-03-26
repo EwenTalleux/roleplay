@@ -15,6 +15,10 @@ class Player:
         self.exppoints = 0
         self.money = 0
         self.weapon = "hand"
+        self.helmet = "head"
+        self.chestplate = "chest"
+        self.legging = "legs"
+        self.boots = "feet"
         self.currentplace = "hilltown"
         self.ship = None
         self.attack = 1
@@ -37,9 +41,33 @@ class Player:
 
     def have_weapon(self):
         """
-        :return:
+        :return: boolean
         """
         return not self.weapon == "hand"
+
+    def have_helmet(self):
+        """
+        :return: boolean
+        """
+        return not self.helmet == "head"
+
+    def have_chestplate(self):
+        """
+        :return: boolean
+        """
+        return not self.chestplate == "chest"
+
+    def have_legging(self):
+        """
+        :return: boolean
+        """
+        return not self.legging == "legs"
+
+    def have_boots(self):
+        """
+        :return: boolean
+        """
+        return not self.boots == "feet"
 
     def change_weapon(self, id_item):
         """
@@ -47,6 +75,38 @@ class Player:
         :return:
         """
         self.weapon = id_item
+        self.inventory.pop(self.inventory.index(id_item))
+
+    def change_helmet(self, id_item):
+        """
+        :param id_item: str
+        :return:
+        """
+        self.helmet = id_item
+        self.inventory.pop(self.inventory.index(id_item))
+
+    def change_chestplate(self, id_item):
+        """
+        :param id_item: str
+        :return:
+        """
+        self.chestplate = id_item
+        self.inventory.pop(self.inventory.index(id_item))
+
+    def change_legging(self, id_item):
+        """
+        :param id_item: str
+        :return:
+        """
+        self.legging = id_item
+        self.inventory.pop(self.inventory.index(id_item))
+
+    def change_boots(self, id_item):
+        """
+        :param id_item: str
+        :return:
+        """
+        self.boots = id_item
         self.inventory.pop(self.inventory.index(id_item))
 
     def is_alive(self):

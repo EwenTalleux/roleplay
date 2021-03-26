@@ -4,7 +4,8 @@
   },
 
   "menu_options": {"0": "exit_menu",
-                   "1": "inventory_menu"
+                   "1": "inventory_menu",
+                   "2": "equipment_menu"
   },
 
   "fight_menu_options": {"1": "playerattacks",
@@ -19,10 +20,12 @@
 
   "items": {"id_card": {"name": "Identity Card" ,"description": "Your Identity Card. It gives information about you. Can also describes your mindset. (Can be updated with time)","use_in_fight": 0,"salable": 0,"equipable": 0},
             "healing_potion": {"name": "Healing Potion", "description":"Restore 5 health points.","effect": {"health": 5} ,"use_in_fight": 1,"salable": 1,"equipable": 0},
+            "fish_healing_potion": {"name": "Fish Healing Potion", "description": "A small healing potion made with fishes. Restore 3 health points.", "effect": {"health": 3}, "use_in_fight": 1, "salable": 1, "equipable": 0},
             "fish": {"name": "Fish", "description": "A very fresh fish, just caught. Can be used to cook some dishes.", "effect": {"health": 1}, "use_in_fight": 1,"salable": 1, "equipable": 0},
             "scale": {"name": "Scale", "description": "A hard, shiny scale. Can be used to craft stuff.", "use_in_fight": 0,"salable": 1, "equipable": 0},
             "small_knife": {"name": "Small Knife", "description": "A small knife that does 3 damage points.", "use_in_fight": 0, "salable": 1, "equipable": 1, "equipable_type": "weapon"},
-            "town_mayor_letter": {"name": "Town Mayor Letter" ,"description": "Letter from the mayor of Hilltown to the mayor of Valleytown","use_in_fight": 0,"salable": 0,"equipable": 0}
+            "town_mayor_letter": {"name": "Town Mayor Letter" ,"description": "Letter from the mayor of Hilltown to the mayor of Valleytown","use_in_fight": 0,"salable": 0,"equipable": 0},
+            "dirty_helmet": {"name": "Dirty Helmet", "description": "A dirty helmet. It not protects you a lot.", "use_in_fight": 0, "salable": 1, "equipable": 1, "equipable_type": "helmet"}
 
   },
 
@@ -42,22 +45,31 @@
 
   },
 
+  "potion_brewer": {"hilltown": {"potionbrewer1": {"fish_healing_potion": {"fish": 2, "scale": 1}}}
+
+  },
+
   "towns": {"middletown": {"name": "Middletown", "go_to": ["port","shop1"]},
             "longisland": {"name": "Long Island", "go_to": ["port"]},
             "fishtown": {"name": "Fishtown", "go_to": ["port"]},
             "foresttown": {"name": "Foresttown", "go_to": ["port"]},
-            "hilltown": {"name": "Hilltown", "go_to": ["port","shop1","hilltowntm"]},
+            "hilltown": {"name": "Hilltown", "go_to": ["port","shop1","hilltowntm","potionbrewer1"]},
             "valleytown": {"name": "Valleytown", "go_to": ["port","valleytowntm"]}
 
   },
 
   "locations": {"shop1": "Magasin Général",
-                "port": "Port"
+                "port": "Port",
+                "potionbrewer1": "Potion Brewer"
 
   },
 
   "weapons": {"hand": {"damage": 2, "after_kick_effect": "None"},
               "small_knife": {"damage": 3, "after_kick_effect": "None"}
+
+  },
+
+  "armor": {"dirty_helmet": {"defense": 1}
 
   },
 

@@ -34,8 +34,10 @@ def choice_direction_menu(place=main.player.currentplace, demo=False):
                     shops.shop(place, data["towns"][place]["go_to"][int(user_choice) - 1])
                 elif data["towns"][place]["go_to"][int(user_choice) - 1] in data["npcs"]:
                     eval("npcobject.Npc('" + data['towns'][place]["go_to"][int(user_choice) - 1] + "').start")()
+                elif data["towns"][place]["go_to"][int(user_choice) - 1] in data["potion_brewer"][place]:
+                    shops.brewer(place, data["towns"][place]["go_to"][int(user_choice) - 1])
                 else:
-                    return globals()[data['towns'][place]["go_to"][int(user_choice) - 1]](place)
+                    globals()[data['towns'][place]["go_to"][int(user_choice) - 1]](place)
             else:
                 if main.is_command(user_choice):
                     main.is_command_known(user_choice)

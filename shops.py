@@ -270,3 +270,145 @@ def buy_item(user_choice, town, shopid):
     else:
         print("You don't have enough money to buy this item.")
     return
+
+
+def brewer(town, brewerid):
+    """
+    :param town: str
+    :param brewerid: str
+    :return:
+    """
+    greetings(town, brewerid)
+    while True:
+        display_brewable_potion(town, brewerid)
+        print('____________________')
+        print('|                  |')
+        print('|     0 - Exit     |')
+        print('| Type item number |')
+        print('|    to brew it    |')
+        print('|__________________|')
+        playerchoice = main.user_type_text()
+        if playerchoice == "0":
+            return
+        elif int(playerchoice) <= len(brewable_potion(town, brewerid)):
+            can_brew(town, brewerid, brewable_potion(town, brewerid)[int(playerchoice)-1])
+        else:
+            print('Invalid option, please type one of the options above.')
+
+
+def display_brewable_potion(town, brewerid):
+    """
+    :param town: str
+    :param brewerid: str
+    :return:
+    """
+    count = 1
+    main_line = '|   '
+    for potion in brewable_potion(town, brewerid):
+        main_line = main_line + str(count) + ' - ' + data["items"][potion]["name"] + '   '
+        count += 1
+    main_line = main_line + '|'
+    for lenght in range(len(main_line)):
+        print('_', end='')
+    print()
+    print('|', end='')
+    for lenght in range(len(main_line) - 2):
+        print(' ', end='')
+    print('|')
+    print(main_line)
+    print('|', end='')
+    for lenght in range(len(main_line) - 2):
+        print('_', end='')
+    print('|')
+
+
+def brewable_potion(town, brewerid):
+    """
+    :param town: str
+    :param brewerid: str
+    :return:
+    """
+    return [potion for potion in data["potion_brewer"][town][brewerid].keys()]
+
+
+def can_brew(town, brewerid, potion):
+    """
+    :param town: str
+    :param brewerid: str
+    :param potion: str
+    :return:
+    """
+    for item, number in data["potion_brewer"][town][brewerid][potion].items():
+        if not check_if_in_inventory(item, number):
+            print("You have not enough item to brew this potion. You need ["+items_needed(town, brewerid, potion)+"].")
+            return
+        else:
+            if ask_brew(town, brewerid, potion):
+                return brew(town, brewerid, potion)
+            else:
+                return
+
+
+def check_if_in_inventory(item, number):
+    """
+    :param item: str
+    :param number: int
+    :return:
+    """
+    count = 0
+    for iteminv in main.player.inventory:
+        if iteminv == item:
+            count += 1
+    return count >= number
+
+
+def items_needed(town, brewerid, potion):
+    """
+    :param town: str
+    :param brewerid: str
+    :param potion: str
+    :return:
+    """
+    items = [item for item in data["potion_brewer"][town][brewerid][potion].keys()]
+    numbers = [number for number in data["potion_brewer"][town][brewerid][potion].values()]
+    list_items = "  "
+    for index in range(len(items)):
+        list_items = list_items + str(data["items"][items[index]]["name"] + " : " + str(numbers[index])+"  ")
+    return list_items
+
+
+def ask_brew(town, brewerid, potion):
+    """
+    :return:
+    """
+    print('Do you want to brew this potion ?')
+    print('It will consume '+items_needed(town, brewerid, potion)+'.')
+    print('____________________')
+    print('|                  |')
+    print('|     1 - Yes      |')
+    print('|     2 - No       |')
+    print('|__________________|')
+    while True:
+        choice_player = main.user_type_text()
+        if choice_player == "1":
+            return True
+        elif choice_player == "2":
+            return False
+        else:
+            print('Invalid option, please type one of the options above.')
+
+
+def brew(town, brewerid, potion):
+    """
+    :param town: str
+    :param brewerid: str
+    :param potion: str
+    :return:
+    """
+    items = [item for item in data["potion_brewer"][town][brewerid][potion].keys()]
+    numbers = [number for number in data["potion_brewer"][town][brewerid][potion].values()]
+    for item in items:
+        for _ in range(numbers[items.index(item)]):
+            main.player.inventory.remove(item)
+    main.player.add_inventory(potion)
+    return
