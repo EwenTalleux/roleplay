@@ -117,12 +117,24 @@ class Player:
         self.money -= 5
 
     def setlevel(self):
-        return (self.exppoints // 10)+1
+        count = 0
+        exppoints = self.exppoints + 1
+        while exppoints > 0:
+            count += 1
+            exppoints = exppoints - (count * 10)
+        return count
 
     def levelup(self):
         if self.setlevel() != self.level:
             self.level = self.setlevel()
-            self.attack = round(self.attack + 0.3/self.attack, 1)
+            self.attack = round(self.attack + 0.3 / self.attack, 1)
             self.defense = round(self.defense + 0.3 / self.defense, 1)
             self.maxlifespan = self.maxlifespan + 1
             print("You have just passed level " + str(self.level) + ".")
+
+    def load_save(self, dict_attributs):
+        for att, val in dict_attributs.items():
+            setattr(self, att, val)
+
+    def get_data_to_save(self):
+        return self.__dict__

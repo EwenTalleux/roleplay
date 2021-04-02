@@ -342,11 +342,10 @@ def can_brew(town, brewerid, potion):
         if not check_if_in_inventory(item, number):
             print("You have not enough item to brew this potion. You need ["+items_needed(town, brewerid, potion)+"].")
             return
-        else:
-            if ask_brew(town, brewerid, potion):
-                return brew(town, brewerid, potion)
-            else:
-                return
+    if ask_brew(town, brewerid, potion):
+        return brew(town, brewerid, potion)
+    else:
+        return
 
 
 def check_if_in_inventory(item, number):
@@ -407,6 +406,7 @@ def brew(town, brewerid, potion):
     """
     items = [item for item in data["potion_brewer"][town][brewerid][potion].keys()]
     numbers = [number for number in data["potion_brewer"][town][brewerid][potion].values()]
+    print(items)
     for item in items:
         for _ in range(numbers[items.index(item)]):
             main.player.inventory.remove(item)

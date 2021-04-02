@@ -2,11 +2,14 @@
 import main
 import shops
 import travel
+import sys
 import npcobject
 import json
 
 with open("storage.json") as file:
     data = json.load(file)
+
+sys.setrecursionlimit(1500)
 
 
 # demo functions
@@ -22,29 +25,32 @@ def choice_direction_menu(place=main.player.currentplace, demo=False):
     :return:
     """
     while True:
-        display_current_place(place)
-        if not demo:
-            if check_item_given_and_talk_to_hilltown_tm():
-                return
-            possible_choice = [str(choice) for choice in range(1, len(data["towns"][place]["go_to"]) + 1)]
-            display_possible_choice(place, possible_choice)
-            user_choice = main.user_type_text()
-            if user_choice in possible_choice:
-                if data["towns"][place]["go_to"][int(user_choice) - 1] in data["shops"][place]:
-                    shops.shop(place, data["towns"][place]["go_to"][int(user_choice) - 1])
-                elif data["towns"][place]["go_to"][int(user_choice) - 1] in data["npcs"]:
-                    eval("npcobject.Npc('" + data['towns'][place]["go_to"][int(user_choice) - 1] + "').start")()
-                elif data["towns"][place]["go_to"][int(user_choice) - 1] in data["potion_brewer"][place]:
-                    shops.brewer(place, data["towns"][place]["go_to"][int(user_choice) - 1])
+        if place == main.player.currentplace:
+            display_current_place(place)
+            if not demo:
+                if check_item_given_and_talk_to_hilltown_tm():
+                    return
+                possible_choice = [str(choice) for choice in range(1, len(data["towns"][place]["go_to"]) + 1)]
+                display_possible_choice(place, possible_choice)
+                user_choice = main.user_type_text()
+                if user_choice in possible_choice:
+                    if data["towns"][place]["go_to"][int(user_choice) - 1] in data["shops"][place]:
+                        shops.shop(place, data["towns"][place]["go_to"][int(user_choice) - 1])
+                    elif data["towns"][place]["go_to"][int(user_choice) - 1] in data["npcs"]:
+                        eval("npcobject.Npc('" + data['towns'][place]["go_to"][int(user_choice) - 1] + "').start")()
+                    elif data["towns"][place]["go_to"][int(user_choice) - 1] in data["potion_brewer"][place]:
+                        shops.brewer(place, data["towns"][place]["go_to"][int(user_choice) - 1])
+                    else:
+                        globals()[data['towns'][place]["go_to"][int(user_choice) - 1]](place)
                 else:
-                    globals()[data['towns'][place]["go_to"][int(user_choice) - 1]](place)
+                    if main.is_command(user_choice):
+                        main.is_command_known(user_choice)
+                    else:
+                        print('Invalid option, please type one of the options above.')
             else:
-                if main.is_command(user_choice):
-                    main.is_command_known(user_choice)
-                else:
-                    print('Invalid option, please type one of the options above.')
+                return
         else:
-            return
+            return choice_direction_menu(main.player.currentplace)
 
 
 def display_current_place(place):

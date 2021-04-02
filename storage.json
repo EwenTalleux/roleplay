@@ -5,7 +5,9 @@
 
   "menu_options": {"0": "exit_menu",
                    "1": "inventory_menu",
-                   "2": "equipment_menu"
+                   "2": "equipment_menu",
+                   "3": "save",
+                   "4": "load_save"
   },
 
   "fight_menu_options": {"1": "playerattacks",
@@ -40,13 +42,19 @@
 
   "shops": {"middletown": {"shop1": {"buy": {"healing_potion": 15, "small_knife": 10},"sell": {"fish": 2, "scale": 5}}},
             "longisland": {"shop2": {"buy": {"small_knife": 10}, "sell": {"fish": 2, "scale": 5}}},
+            "fishtown": {},
+            "foresttown": {},
             "hilltown": {"shop1": {"buy": {"healing_potion": 15},"sell": {"fish": 2, "scale": 5}}},
             "valleytown": {}
 
   },
 
-  "potion_brewer": {"hilltown": {"potionbrewer1": {"fish_healing_potion": {"fish": 2, "scale": 1}}}
-
+  "potion_brewer": {"middletown": {},
+                    "longisland": {},
+                    "fishtown": {},
+                    "foresttown": {},
+                    "hilltown": {"potionbrewer1": {"fish_healing_potion": {"fish": 2, "scale": 1}}},
+                    "valleytown": {}
   },
 
   "towns": {"middletown": {"name": "Middletown", "go_to": ["port","shop1"]},

@@ -1,12 +1,18 @@
 # O
 import time
 import json
+import tkinter
+from tkinter.filedialog import askopenfilename
+import os
 import playerobject
 
 player = playerobject.Player('name', 'gender')
 
 with open("storage.json") as file:
     data = json.load(file)
+
+root = tkinter.Tk()
+root.withdraw()
 
 
 def print_text(text):
@@ -82,6 +88,8 @@ def display_menu():
     print('|     0 - Exit     |')
     print('|   1 - Inventory  |')
     print('|   2 - Equipment  |')
+    print('|     3 - Save     |')
+    print('|     4 - Load     |')
     print('|__________________|')
 
 
@@ -188,7 +196,7 @@ def equip_item(item):
     if not eval("player.have_" + data["items"][item]["equipable_type"])():
         eval("player.change_" + data["items"][item]["equipable_type"])(item)
     else:
-        player.add_inventory(eval("player."+data["items"][item]["equipable_type"]))
+        player.add_inventory(eval("player." + data["items"][item]["equipable_type"]))
         eval("player.change_" + data["items"][item]["equipable_type"])(item)
 
 
@@ -224,7 +232,7 @@ def equipment_list():
 def display_equipment(equipment):
     print("_______            _______")
     print("|     |            |     |")
-    print("|  "+equipment[0]+"  |   Helmet   |  "+equipment[4]+"  |   Weapon")
+    print("|  " + equipment[0] + "  |   Helmet   |  " + equipment[4] + "  |   Weapon")
     print("|_____|            |_____|")
     print("_______")
     print("|     |")
@@ -243,16 +251,22 @@ def display_equipment(equipment):
 
 def display_defense_damage(item):
     if data["items"][item]["equipable_type"] != "weapon":
-        print("Defense : "+str(data["armor"][item]["defense"]))
+        print("Defense : " + str(data["armor"][item]["defense"]))
     else:
         print("Damage : " + str(data["weapons"][item]["damage"]))
 
 
 def equipment_menu():
-    possible_choice = ['0']+equipment_list()
+    possible_choice = ['0'] + equipment_list()
 
     while True:
         display_equipment(equipment_list())
+        print('____________________')
+        print('|                  |')
+        print('|     0 - Exit     |')
+        print('| Type item number |')
+        print('|    to see more   |')
+        print('|__________________|')
         user_choice = user_type_text()
         if user_choice in possible_choice:
             if user_choice == '0':
@@ -260,13 +274,13 @@ def equipment_menu():
             else:
                 if user_choice == "1":
                     item = player.helmet
-                if user_choice == "2":
+                elif user_choice == "2":
                     item = player.chestplate
-                if user_choice == "3":
+                elif user_choice == "3":
                     item = player.legging
-                if user_choice == "4":
+                elif user_choice == "4":
                     item = player.boots
-                if user_choice == "5":
+                else:
                     item = player.weapon
                 display_item_description(item)
                 display_defense_damage(item)
@@ -274,7 +288,42 @@ def equipment_menu():
             print('Invalid option, please type a valid option.')
 
 
+def load_save():
+    choice = askopenfilename()
+    if check_if_json(choice):
+        with open(choice, "r") as filesave:
+            save_data = json.load(filesave)
+        player.load_save(save_data)
+        return
+    else:
+        print('Error. Please choose a json file.')
+        return
+
+
+def check_if_json(filechoice):
+    while filechoice[0] != '.':
+        filechoice = filechoice[1:]
+    filechoice = filechoice[1:]
+    return filechoice.lower() == 'json'
+
+
+def save(count=0):
+    if count == 0:
+        filename = 'save.json'
+    else:
+        filename = 'save'+str(count)+".json"
+    if filename not in os.listdir():
+        print('You successfully create a save named '+filename+".")
+        with open(filename, "w") as savefile:
+            datatosave = player.get_data_to_save()
+            json.dump(datatosave, savefile)
+    else:
+        save(count+1)
+
+
 player.add_inventory('id_card')
 player.add_inventory('small_knife')
 player.add_inventory('dirty_helmet')
 player.ship = "rawboat1"
+
+check_if_json('test.json')
