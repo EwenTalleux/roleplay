@@ -169,8 +169,12 @@ def enemyturn(Mob, do_enemy_turn):
     :return:
     """
     if do_enemy_turn:
+        damage = (Mob.strength - ((main.player.defense - 1) / 100) - (main.player.armor / 10))
+        if damage < 0:
+            damage = 0
         main.player.currentlifespan = round(
-            main.player.currentlifespan - (Mob.strength - ((main.player.defense - 1) / 100)), 1)
+            main.player.currentlifespan - damage
+            , 1)
 
 
 def giveloots(Mob):

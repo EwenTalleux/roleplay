@@ -3,7 +3,12 @@ import main
 import fight
 import shops
 import place
+import os
 import npcobject
+
+
+def cls():
+    os.system('cls' if os.name=='nt' else 'clear')
 
 
 def ask_name():
@@ -61,6 +66,7 @@ main.player.money = main.player.money + 15
 print("You just earned 15 coins.")
 shops.shop('hilltown', 'shop1')
 check_if_healingpotion_in_inventory()
+cls()
 print("Great ! Now let's fight some monsters !")
 print("Oh look ! There's a very big and angry fish there. Go kick this bitch's ass !")
 if fight.battle('mob_fish', 3):

@@ -1,8 +1,6 @@
 # O
 import time
 import json
-import tkinter
-from tkinter.filedialog import askopenfilename
 import os
 import playerobject
 
@@ -10,9 +8,6 @@ player = playerobject.Player('name', 'gender')
 
 with open("storage.json") as file:
     data = json.load(file)
-
-root = tkinter.Tk()
-root.withdraw()
 
 
 def print_text(text):
@@ -198,6 +193,7 @@ def equip_item(item):
     else:
         player.add_inventory(eval("player." + data["items"][item]["equipable_type"]))
         eval("player.change_" + data["items"][item]["equipable_type"])(item)
+    player.set_armor()
 
 
 def exit():
@@ -289,15 +285,18 @@ def equipment_menu():
 
 
 def load_save():
-    choice = askopenfilename()
-    if check_if_json(choice):
-        with open(choice, "r") as filesave:
-            save_data = json.load(filesave)
-        player.load_save(save_data)
-        return
-    else:
-        print('Error. Please choose a json file.')
-        return
+    while True:
+        choice = user_type_text()
+        files = os.listdir()
+        json_files = json_in_directory(files)
+        if check_if_json(choice):
+            with open(choice, "r") as filesave:
+                save_data = json.load(filesave)
+            player.load_save(save_data)
+            return
+        else:
+            print('Error. Please choose a json file.')
+            return
 
 
 def check_if_json(filechoice):
@@ -312,13 +311,22 @@ def save(count=0):
         filename = 'save.json'
     else:
         filename = 'save'+str(count)+".json"
-    if filename not in os.listdir():
+    if filename not in os.listdir('/saves'):
         print('You successfully create a save named '+filename+".")
-        with open(filename, "w") as savefile:
+        with open('/saves/'+filename, "w",) as savefile:
             datatosave = player.get_data_to_save()
             json.dump(datatosave, savefile)
+
     else:
         save(count+1)
+
+
+def json_in_directory(files):
+    json_files = []
+    for file in files:
+        if check_if_json(file):
+            json_files.append(file)
+    return json_files
 
 
 player.add_inventory('id_card')

@@ -19,6 +19,7 @@ class Player:
         self.chestplate = "chest"
         self.legging = "legs"
         self.boots = "feet"
+        self.armor = 0
         self.currentplace = "hilltown"
         self.ship = None
         self.attack = 1
@@ -130,6 +131,7 @@ class Player:
             self.attack = round(self.attack + 0.3 / self.attack, 1)
             self.defense = round(self.defense + 0.3 / self.defense, 1)
             self.maxlifespan = self.maxlifespan + 1
+            self.currentlifespan += 1
             print("You have just passed level " + str(self.level) + ".")
 
     def load_save(self, dict_attributs):
@@ -138,3 +140,15 @@ class Player:
 
     def get_data_to_save(self):
         return self.__dict__
+
+    def set_armor(self):
+        armor = 0
+        if self.have_helmet():
+            armor += data["armor"][self.helmet]["defense"]
+        if self.have_chestplate():
+            armor += data["armor"][self.chestplate]["defense"]
+        if self.have_legging():
+            armor += data["armor"][self.legging]["defense"]
+        if self.have_boots():
+            armor += data["armor"][self.boots]["defense"]
+        self.armor = armor

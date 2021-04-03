@@ -26,10 +26,10 @@ def choice_direction_menu(place=main.player.currentplace, demo=False):
     """
     while True:
         if place == main.player.currentplace:
-            display_current_place(place)
             if not demo:
                 if check_item_given_and_talk_to_hilltown_tm():
                     return
+                display_current_place(place)
                 possible_choice = [str(choice) for choice in range(1, len(data["towns"][place]["go_to"]) + 1)]
                 display_possible_choice(place, possible_choice)
                 user_choice = main.user_type_text()
