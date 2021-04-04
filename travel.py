@@ -3,6 +3,11 @@ import main
 import fight
 import place
 import random
+import os
+
+
+def cls():
+    os.system('cls' if os.name == 'nt' else 'clear')
 
 
 def travel(placefrom, placeto):

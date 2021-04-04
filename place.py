@@ -3,6 +3,7 @@ import main
 import shops
 import travel
 import sys
+import os
 import npcobject
 import json
 
@@ -10,6 +11,10 @@ with open("storage.json") as file:
     data = json.load(file)
 
 sys.setrecursionlimit(1500)
+
+
+def cls():
+    os.system('cls' if os.name=='nt' else 'clear')
 
 
 # demo functions
@@ -35,17 +40,24 @@ def choice_direction_menu(place=main.player.currentplace, demo=False):
                 user_choice = main.user_type_text()
                 if user_choice in possible_choice:
                     if data["towns"][place]["go_to"][int(user_choice) - 1] in data["shops"][place]:
+                        cls()
                         shops.shop(place, data["towns"][place]["go_to"][int(user_choice) - 1])
+                        cls()
                     elif data["towns"][place]["go_to"][int(user_choice) - 1] in data["npcs"]:
+                        cls()
                         eval("npcobject.Npc('" + data['towns'][place]["go_to"][int(user_choice) - 1] + "').start")()
                     elif data["towns"][place]["go_to"][int(user_choice) - 1] in data["potion_brewer"][place]:
+                        cls()
                         shops.brewer(place, data["towns"][place]["go_to"][int(user_choice) - 1])
                     else:
+                        cls()
                         globals()[data['towns'][place]["go_to"][int(user_choice) - 1]](place)
                 else:
                     if main.is_command(user_choice):
+                        cls()
                         main.is_command_known(user_choice)
                     else:
+                        cls()
                         print('Invalid option, please type one of the options above.')
             else:
                 return
@@ -83,8 +95,10 @@ def port(place):
     display_port(destinations)
     user_choice = main.user_type_text()
     if user_choice == "0":
+        cls()
         return
     else:
+        cls()
         return travel.travel(place, destinations[int(user_choice) - 1])
 
 

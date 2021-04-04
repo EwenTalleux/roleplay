@@ -10,6 +10,10 @@ with open("storage.json") as file:
     data = json.load(file)
 
 
+def cls():
+    os.system('cls' if os.name == 'nt' else 'clear')
+
+
 def print_text(text):
     """
     :param text: str
@@ -62,8 +66,10 @@ def menu_open():
         user_choice = user_type_text()
         if user_choice in possible_choice:
             if user_choice == '0':
+                cls()
                 return globals()[data['menu_options'][user_choice]]()
             else:
+                cls()
                 globals()[data['menu_options'][user_choice]]()
                 display_menu()
         else:
@@ -101,8 +107,10 @@ def inventory_menu():
         user_choice = user_type_text()
         if user_choice in possible_choice:
             if user_choice == '0':
+                cls()
                 return
             else:
+                cls()
                 display_item_description(player.inventory[int(user_choice) - 1])
                 if data["items"][player.inventory[int(user_choice) - 1]]["equipable"]:
                     equip_menu(player.inventory[int(user_choice) - 1])
@@ -176,10 +184,13 @@ def equip_menu(item):
     while True:
         choice_player = user_type_text()
         if choice_player == "1":
+            cls()
             return equip_item(item)
         elif choice_player == "2":
+            cls()
             return
         else:
+            cls()
             print('Invalid option, please type one of the options above.')
 
 
@@ -266,6 +277,7 @@ def equipment_menu():
         user_choice = user_type_text()
         if user_choice in possible_choice:
             if user_choice == '0':
+                cls()
                 return
             else:
                 if user_choice == "1":
@@ -278,25 +290,51 @@ def equipment_menu():
                     item = player.boots
                 else:
                     item = player.weapon
+                cls()
                 display_item_description(item)
                 display_defense_damage(item)
         else:
+            cls()
             print('Invalid option, please type a valid option.')
 
 
 def load_save():
     while True:
-        choice = user_type_text()
-        files = os.listdir()
+        files = [f for f in os.listdir('./saves') if os.path.isfile('./saves/'+f)]
         json_files = json_in_directory(files)
-        if check_if_json(choice):
-            with open(choice, "r") as filesave:
-                save_data = json.load(filesave)
-            player.load_save(save_data)
-            return
+
+        possible_choice = ['0']
+        if json_files:
+            for count in range(len(json_files)):
+                possible_choice.append(str(count+1))
+
+            display_save_files(json_files)
+            print('____________________')
+            print('|                  |')
+            print('|     0 - Exit     |')
+            print('| Type save number |')
+            print('|    to load it    |')
+            print('|__________________|')
         else:
-            print('Error. Please choose a json file.')
-            return
+            print('[---No Save Found---]')
+            print('____________________')
+            print('|                  |')
+            print('|     0 - Exit     |')
+            print('|__________________|')
+        choice = user_type_text()
+        if choice in possible_choice:
+            if choice == '0':
+                cls()
+                return
+            else:
+                with open('./saves/'+json_files[int(choice)-1], "r") as filesave:
+                    save_data = json.load(filesave)
+                player.load_save(save_data)
+                cls()
+                return
+        else:
+            cls()
+            print('Invalid option, please type one of the options above.')
 
 
 def check_if_json(filechoice):
@@ -311,9 +349,9 @@ def save(count=0):
         filename = 'save.json'
     else:
         filename = 'save'+str(count)+".json"
-    if filename not in os.listdir('/saves'):
+    if filename not in os.listdir('./saves'):
         print('You successfully create a save named '+filename+".")
-        with open('/saves/'+filename, "w",) as savefile:
+        with open('./saves/'+filename, "w",) as savefile:
             datatosave = player.get_data_to_save()
             json.dump(datatosave, savefile)
 
@@ -323,11 +361,34 @@ def save(count=0):
 
 def json_in_directory(files):
     json_files = []
-    for file in files:
-        if check_if_json(file):
-            json_files.append(file)
-    return json_files
 
+    if files:
+        for file in files:
+            if check_if_json(file):
+                json_files.append(file)
+        return json_files
+    return
+
+
+def display_save_files(files):
+    count = 1
+    main_line = '|   '
+    for file in files:
+        main_line = main_line + str(count) + ' : ' + file + '   '
+        count += 1
+    main_line = main_line + '|'
+    for lenght in range(len(main_line)):
+        print('_', end='')
+    print()
+    print('|', end='')
+    for lenght in range(len(main_line) - 2):
+        print(' ', end='')
+    print('|')
+    print(main_line)
+    print('|', end='')
+    for lenght in range(len(main_line) - 2):
+        print('_', end='')
+    print('|')
 
 player.add_inventory('id_card')
 player.add_inventory('small_knife')

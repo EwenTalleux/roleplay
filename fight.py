@@ -2,7 +2,12 @@
 import mobsobject
 import main
 import place
+import os
 import effects
+
+
+def cls():
+    os.system('cls' if os.name == 'nt' else 'clear')
 
 
 def battle(mob, level):
@@ -17,6 +22,7 @@ def battle(mob, level):
         do_enemy_turn = playerturn(Mob)
         if Mob.currentlifespan > 0:
             enemyturn(Mob, do_enemy_turn)
+        cls()
     if Mob.currentlifespan <= 0:
         giveloots(Mob)
         giveexp(Mob)

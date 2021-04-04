@@ -54,10 +54,12 @@ print('|     1 - Yes      |')
 print('|     2 - No       |')
 print('|__________________|')
 name = nameuser()
+cls()
 print("Oh great ! Hello " + name + " !")
 print("Humm... Tell me please. What are you ?")
 print("You're a ...")
 gender = main.user_type_text()
+cls()
 print("Ah yes, of course ! You're a " + gender + " !")
 main.player.name = name
 main.player.gender = gender
@@ -65,8 +67,8 @@ print("I gave you some money. Go make some shopping. You need stuff to fight wil
 main.player.money = main.player.money + 15
 print("You just earned 15 coins.")
 shops.shop('hilltown', 'shop1')
-check_if_healingpotion_in_inventory()
 cls()
+check_if_healingpotion_in_inventory()
 print("Great ! Now let's fight some monsters !")
 print("Oh look ! There's a very big and angry fish there. Go kick this bitch's ass !")
 if fight.battle('mob_fish', 3):

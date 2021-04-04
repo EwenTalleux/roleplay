@@ -1,9 +1,14 @@
 # R
 import json
+import os
 import main
 
 with open("storage.json") as file:
     data = json.load(file)
+
+
+def cls():
+    os.system('cls' if os.name=='nt' else 'clear')
 
 
 def greetings(town, shopid):
@@ -76,15 +81,18 @@ def shop(town, shopid):
     :param shopid: str
     :return:
     """
-    greetings(town, shopid)
     while True:
+        greetings(town, shopid)
         display_shop_menu()
         playerchoice = main.user_type_text()
         if playerchoice in main.data["shop_menu_options"]:
+            cls()
             globals()[main.data['shop_menu_options'][playerchoice]](town, shopid)
         elif playerchoice == "0":
+            cls()
             return
         else:
+            cls()
             print('Invalid option, please type one of the options above.')
 
 
@@ -118,10 +126,13 @@ def display_selling_menu(town, shopid):
         user_choice = main.user_type_text()
         if user_choice in possible_choice:
             if user_choice == '0':
+                cls()
                 return False
             else:
+                cls()
                 return sell_item(user_choice, town, shopid)
         else:
+            cls()
             print('Invalid option, please type one of the options above.')
 
 
@@ -213,10 +224,13 @@ def display_buying_menu(town, shopid):
         user_choice = main.user_type_text()
         if user_choice in possible_choice:
             if user_choice == '0':
+                cls()
                 return False
             else:
+                cls()
                 return buy_item(user_choice, town, shopid)
         else:
+            cls()
             print('Invalid option, please type one of the options above.')
 
 
@@ -266,8 +280,10 @@ def buy_item(user_choice, town, shopid):
     if main.player.money >= data["shops"][town][shopid]["buy"][purchasable_item(town, shopid)[int(user_choice) - 1]]:
         main.player.money = main.player.money - data["shops"][town][shopid]["buy"][purchasable_item(town, shopid)[int(
             user_choice) - 1]]
+        cls()
         main.player.add_inventory(purchasable_item(town, shopid)[int(user_choice) - 1])
     else:
+        cls()
         print("You don't have enough money to buy this item.")
     return
 
@@ -289,10 +305,13 @@ def brewer(town, brewerid):
         print('|__________________|')
         playerchoice = main.user_type_text()
         if playerchoice == "0":
+            cls()
             return
         elif int(playerchoice) <= len(brewable_potion(town, brewerid)):
+            cls()
             can_brew(town, brewerid, brewable_potion(town, brewerid)[int(playerchoice)-1])
         else:
+            cls()
             print('Invalid option, please type one of the options above.')
 
 
@@ -340,9 +359,11 @@ def can_brew(town, brewerid, potion):
     """
     for item, number in data["potion_brewer"][town][brewerid][potion].items():
         if not check_if_in_inventory(item, number):
+            cls()
             print("You have not enough item to brew this potion. You need ["+items_needed(town, brewerid, potion)+"].")
             return
     if ask_brew(town, brewerid, potion):
+        cls()
         return brew(town, brewerid, potion)
     else:
         return
@@ -390,10 +411,13 @@ def ask_brew(town, brewerid, potion):
     while True:
         choice_player = main.user_type_text()
         if choice_player == "1":
+            cls()
             return True
         elif choice_player == "2":
+            cls()
             return False
         else:
+            cls()
             print('Invalid option, please type one of the options above.')
 
 
@@ -406,7 +430,6 @@ def brew(town, brewerid, potion):
     """
     items = [item for item in data["potion_brewer"][town][brewerid][potion].keys()]
     numbers = [number for number in data["potion_brewer"][town][brewerid][potion].values()]
-    print(items)
     for item in items:
         for _ in range(numbers[items.index(item)]):
             main.player.inventory.remove(item)
